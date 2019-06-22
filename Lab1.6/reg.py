@@ -1,7 +1,6 @@
 from ipaddress import IPv4Interface
 import re
 import glob
-import texttable
 
 
 # get_file = glog.iglob('/home/jet/seafile/Seafile/p4ne_training/config_files/*')
