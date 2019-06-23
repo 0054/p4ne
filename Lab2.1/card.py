@@ -33,17 +33,29 @@ def print_info(info):
         print(json.dumps(info[1], indent=2))
     else:
         print('error! status code: {}'.format(info[1]))
-    
+
+get_bank_name = lambda x: x['bank']['name'] if x['bank'].get('name') else None
+
 def main():
     args = get_args()
+    bank_set = set()
     if args.file:
         for card_number in read_file(args.file):
             result = get_card_info(card_number)
-            print_info(result)
+            if result[0]:
+                # print(json.dumps(result[1], indent=2))
+                bank_set.add(get_bank_name(result[1]))
+            # print_info(result)
     else:
         for card_number in args.list:
             result = get_card_info(card_number)
-            print_info(result)
+            if result[0]:
+                # print(json.dumps(result[1], indent=2))
+                bank_set.add(get_bank_name(result[1]))
+            # print_info(result)
+    bank_set.remove(None)
+    for bank in sorted(bank_set):
+        print(bank)
 
 
 if __name__ == "__main__":
