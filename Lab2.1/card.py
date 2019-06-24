@@ -53,7 +53,12 @@ def main():
                 # print(json.dumps(result[1], indent=2))
                 bank_set.add(get_bank_name(result[1]))
             # print_info(result)
-    bank_set.remove(None)
+
+    try:
+        bank_set.remove(None)
+    except:
+        pass
+
     for bank in sorted(bank_set):
         print(bank)
 
