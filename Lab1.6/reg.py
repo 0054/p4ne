@@ -3,8 +3,8 @@ import re
 import glob
 
 
-# get_file = glog.iglob('/home/jet/seafile/Seafile/p4ne_training/config_files/*')
-gen_file = glob.iglob('/home/mint/Dropbox/python/JET_PYTHON/config_files/*.txt')
+gen_file = glob.iglob('/home/jet/seafile/Seafile/p4ne_training/config_files/*.txt')
+# gen_file = glob.iglob('/home/mint/Dropbox/python/JET_PYTHON/config_files/*.txt')
 
 regex_ip = r'.*ip address (([0-9]{1,3}.?){4}) (([0-9]{1,3}.?){4})' 
 regex_int = r'^interface (.*)'
