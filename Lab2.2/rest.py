@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 import json
 import glob
 import re
@@ -29,21 +29,20 @@ def get_help():
     help = {'/': 'show help',
             '/config': 'list hosts with config files',
             '/config/(hostname)': 'get ip list'}
-    return json.dumps(help)
+    return help
 
 @app.route('/')
 def index():
-    return get_help()
+    return jsonify(get_help())
 
 @app.route('/configs')
 def config():
-    hosts_list = list(classify_configs().keys())
-    return json.dumps(hosts_list)
+    return jsonify(list(classify_configs().keys()))
 
 @app.route('/config/<hostname>')
 def get_hosts_ip(hostname):
     ip_list = classify_configs()[hostname]
-    return json.dumps(ip_list)
+    return jsonify(ip_list)
 
 if __name__ == "__main__":
     app.run()

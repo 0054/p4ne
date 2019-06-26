@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  tasks:
+    - name: collect data
+      command: ifconfig -a
+      register: ifcfg
+
+    - name: calculate
+      set_fact:
+        packets: "{{ ifcfg['stdout'] | regex_findall('RX packets ([0-9]+)') }}"
+
+    - name: print result
+      debug:
+        msg: "{{ packets | map('int') | sum }}"
+
